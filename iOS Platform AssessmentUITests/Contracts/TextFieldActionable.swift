@@ -26,7 +26,7 @@ protocol TextFieldActionable: ApplicationAccessing, ElementWaitable {
 extension TextFieldActionable {
     
     @discardableResult
-    func iType(text: String, inTextField: XCUIElement, shouldClear: Bool = true, file: StaticString = #file, line: UInt = #line, timeout: Double = .standardTimeout) -> Self {
+    func iType(text: String, inTextField: XCUIElement, shouldClear: Bool = true, file: StaticString = #file, line: UInt = #line, timeout: Double = 5) -> Self {
         iWaitForElement(inTextField, timeout: timeout, file: file, line: line)
         inTextField.tap()
         let value = inTextField.value as? String

@@ -15,7 +15,7 @@ struct AccessibilityIdentifiers {
 
   struct LoginView {
     static let accountTokenTextField = "account_token_text_field"
-    static let apiKeyTextField = "api_token_text_field"
+    static let apiKeyTextField = "api_key_text_field"
     static let loginButton = "login_button"
   }
 

@@ -1,10 +1,3 @@
-//
-//  iOS_Platform_AssessmentTests.swift
-//  iOS Platform AssessmentTests
-//
-//  Created by Brandon Yates on 4/15/25.
-//
-
 import Testing
 @testable import iOS_Platform_Assessment
 

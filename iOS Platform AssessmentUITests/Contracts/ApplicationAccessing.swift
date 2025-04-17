@@ -1,9 +1,3 @@
-//
-//  ApplicationAccessing.swift
-//  fleetio-go-e2e-sampleUITests
-//
-//  Created by Luiza on 2024-07-22.
-//
 import Foundation
 import XCTest
 

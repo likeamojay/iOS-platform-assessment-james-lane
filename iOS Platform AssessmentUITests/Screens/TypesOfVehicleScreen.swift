@@ -1,10 +1,3 @@
-//
-//  VehiclesScreen.swift
-//  fleetio-go-e2e-sampleUITests
-//
-//  Created by Luiza on 2024-07-25.
-//
-
 import Foundation
 import XCTest
 

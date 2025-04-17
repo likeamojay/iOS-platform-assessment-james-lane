@@ -1,10 +1,3 @@
-//
-//  Passwords.swift
-//  fleetio-go-e2e-sample
-//
-//  Created by Luiza on 2024-07-22.
-//
-
 import Foundation
 import XCTest
 

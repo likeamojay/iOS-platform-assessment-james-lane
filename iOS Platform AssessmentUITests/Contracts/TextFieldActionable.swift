@@ -3,7 +3,7 @@ import XCTest
 
 
 protocol TextFieldActionable: ApplicationAccessing, ElementWaitable {
-    
+
     @discardableResult
     /// Types a text in a specific TextField
     /// - Parameters:
@@ -17,9 +17,9 @@ protocol TextFieldActionable: ApplicationAccessing, ElementWaitable {
 }
 
 extension TextFieldActionable {
-    
+
     @discardableResult
-    func iType(text: String, inTextField: XCUIElement, shouldClear: Bool = true, file: StaticString = #file, line: UInt = #line, timeout: Double = 5) -> Self {
+    func iType(text: String, inTextField: XCUIElement, shouldClear: Bool = true, file: StaticString = #file, line: UInt = #line, timeout: Double = .standardTimeout) -> Self {
         iWaitForElement(inTextField, timeout: timeout, file: file, line: line)
         inTextField.tap()
         let value = inTextField.value as? String

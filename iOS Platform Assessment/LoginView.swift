@@ -62,7 +62,7 @@ struct LoginView: View {
         }
         
         NavigationLink(
-          destination: VehicleList(),
+          destination: HomeView(),
           isActive: $isLoggedIn,
           label: { EmptyView() }
         )

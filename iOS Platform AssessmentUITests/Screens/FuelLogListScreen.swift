@@ -1,27 +1,28 @@
+
 import Foundation
 import XCTest
 
 enum FuelLogListScreen: String, ApplicationAccessing {
-    
+
     case addNewFuelButton = "fuel_log_new_entry"
-    
+
     var element: XCUIElement {
         app.navigationBars.buttons[rawValue]
     }
 }
 
 class FuelLogListScreenActions: ElementWaitable  {
-    
+
     /// First fuel log cell has the starting index 5 as in identifier fuel_log_list_item_5
     private static let startingIndex = 5
     private static let baseFuelLogButtonIdentifier = "fuel_log_list_item_"
-    
+
     @discardableResult
     func iTapAddNewFuel() -> Self {
         iWaitForElementAndTap(FuelLogListScreen.addNewFuelButton.element)
         return self
     }
-    
+
     @discardableResult
     func iVerifyLastAddedFuelLog(howManyAdded: Int = 1, date: Date = .now, pricePerGallon: Double, gallons: Double, tripMiles: Double, odometer: Double) -> Self {
         let lastLogAdded = app.buttons[Self.baseFuelLogButtonIdentifier + "\(howManyAdded + Self.startingIndex)"]
@@ -36,7 +37,7 @@ class FuelLogListScreenActions: ElementWaitable  {
         XCTAssertEqual(odometer, stringToDouble(lastLogAdded.staticTexts.element(boundBy: 10).label))
         return self
     }
-    
+
     /// Converts a String to a Double
     /// - Parameter string: the String you want to convert
     /// - Returns: returns the double value after stripping non-numeric characters or -1 if the string is invalid

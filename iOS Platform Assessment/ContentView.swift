@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  iOS Platform Assessment
-//
-//  Created by Brandon Yates on 4/15/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {

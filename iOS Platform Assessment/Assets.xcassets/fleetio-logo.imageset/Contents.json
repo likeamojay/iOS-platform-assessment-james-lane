@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "fleetio-logo-horizontal.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -1,16 +1,10 @@
-//
-//  LoginView.swift
-//  iOS Platform Assessment
-//
-//  Created by Brandon Yates on 4/15/25.
-//
 import Foundation
 import SwiftUI
 
 struct LoginView: View {
   
-  @State private var email = ""
-  @State private var password = ""
+  @State private var accountToken = ""
+  @State private var apiKey = ""
   @State private var showError = false
   @State private var isLoggedIn = false
   @State private var isLoading = false
@@ -22,18 +16,18 @@ struct LoginView: View {
           .imageScale(.large)
           .foregroundStyle(.tint)
         
-        TextField("Email", text: $email)
+        TextField("Account Token", text: $accountToken)
           .textFieldStyle(.roundedBorder)
           .padding()
-          .accessibilityIdentifier(AccessibilityIdentifiers.LoginView.emailTextField)
+          .accessibilityIdentifier(AccessibilityIdentifiers.LoginView.accountTokenTextField)
         
-        SecureField("Password", text: $password)
+        SecureField("Api Key", text: $apiKey)
           .textFieldStyle(.roundedBorder)
           .padding()
-          .accessibilityIdentifier(AccessibilityIdentifiers.LoginView.passwordTextField)
+          .accessibilityIdentifier(AccessibilityIdentifiers.LoginView.apiKeyTextField)
         
         if showError {
-          Text("Invalid email or password")
+          Text("Invalid account token or api key. Please try again.")
             .foregroundColor(.red)
             .padding()
         }
@@ -78,7 +72,7 @@ struct LoginView: View {
   }
   
   func validateLogin() -> Bool {
-    return !email.isEmpty && !password.isEmpty && email.lowercased() == "sdetcandidate" && password == "123"
+    return !accountToken.isEmpty && !apiKey.isEmpty
   }
 }
 

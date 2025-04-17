@@ -7,9 +7,9 @@ struct VehicleOptions {
 }
 
 struct VehicleView: View {
-  
+
   @State var vehicle: Vehicle
-  
+
   let vehicleOptions = [
     VehicleOptions(name: "Fuel Log", iconName: "fuelpump"),
     VehicleOptions(name: "Service History", iconName: "wrench.adjustable"),
@@ -26,11 +26,11 @@ struct VehicleView: View {
     VehicleOptions(name: "Photos", iconName: "photo"),
     VehicleOptions(name: "Documents", iconName: "doc")
     ]
-  
+
   var body: some View {
     List {
       Text(vehicle.customName)
-      
+
       Section {
         ForEach(vehicleOptions, id: \.name) { option in
           NavigationLink(destination: navigationDestination(for: option)) {
@@ -39,7 +39,7 @@ struct VehicleView: View {
                 .imageScale(.large)
                 .foregroundColor(.gray)
                 .frame(width: 25, height: 25)
-              
+
               Text(option.name)
                 .padding(.leading, 20)
             }
@@ -50,9 +50,11 @@ struct VehicleView: View {
     }
     .navigationTitle(vehicle.customName)
   }
-  
+
   func navigationDestination(for asset: VehicleOptions) -> some View {
     switch asset.name {
+    case "Fuel Log":
+      return AnyView(FuelLogList(vehicleId: vehicle.id))
     default:
       return AnyView(Text("Coming soon!"))
     }

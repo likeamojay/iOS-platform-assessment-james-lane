@@ -1,11 +1,10 @@
 import Foundation
-import Foundation
 import SwiftUI
 
 struct VehicleList: View {
   @State private var isLoading = true
   @State private var searchText = ""
-  
+
   var filteredVehicles: [Vehicle] {
     if searchText.isEmpty {
       return SampleData.vehicleList
@@ -52,24 +51,24 @@ struct VehicleList: View {
 
 struct VehicleRow: View {
   let vehicle: Vehicle
-  
+
   var body: some View {
     HStack {
       Image(systemName: "car")
         .imageScale(.large)
         .foregroundColor(.gray)
         .frame(width: 50, height: 50)
-      
+
       VStack(alignment: .leading) {
-        
+
         Text(vehicle.customName)
-        
+
         HStack {
           Text(vehicle.year)
           Text(vehicle.make)
           Text(vehicle.model)
         }
-        
+
         HStack {
           Circle().frame(width: 10, height: 10)
             .foregroundColor(vehicle.status == "Active" ? .green : .red)

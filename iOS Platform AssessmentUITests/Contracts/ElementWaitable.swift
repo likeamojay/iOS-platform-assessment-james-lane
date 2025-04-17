@@ -3,7 +3,7 @@ import XCTest
 
 /// Allows user to interact with waitable elements
 protocol ElementWaitable: ApplicationAccessing {
-    
+
     @discardableResult
     /// Waits for the existence of an XCUIElement
     /// - Parameters:
@@ -13,7 +13,7 @@ protocol ElementWaitable: ApplicationAccessing {
     ///    line:line from where the function was called
     /// - Returns: self
     func iWaitForElement(_ element: XCUIElement, timeout: Double, file: StaticString,  line: UInt) -> Self
-    
+
     @discardableResult
     /// Waits for the existance of a button element, then taps
     /// - Parameters:
@@ -26,13 +26,13 @@ protocol ElementWaitable: ApplicationAccessing {
 }
 
 extension ElementWaitable {
-    
+
     @discardableResult
     func iWaitForElement(_ element: XCUIElement, timeout: Double = .standardTimeout, file: StaticString = #file,  line: UInt = #line) -> Self {
         XCTAssertTrue(element.waitForExistence(timeout: timeout), "Could not find element: \(element.identifier)", file: file, line: line)
         return self
     }
-    
+
     @discardableResult
     func iWaitForElementAndTap(_ element: XCUIElement, timeout: Double = .standardTimeout, file: StaticString = #file, line: UInt = #line) -> Self {
         iWaitForElement(element, timeout: timeout, file: file, line: line)

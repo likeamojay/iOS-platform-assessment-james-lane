@@ -2,7 +2,7 @@ import Foundation
 import XCTest
 
 extension XCTestCase {
-    
+
     /// Adds debug description at the end of a test
     /// - Parameters:
     ///   - app: The app instance
@@ -14,7 +14,7 @@ extension XCTestCase {
         stringAttachment.name = file.description + ".txt"
         add(stringAttachment)
     }
-    
+
     /// Adds a screenshot at the time of a test
     /// - Parameters:
     ///   - app: The app instance

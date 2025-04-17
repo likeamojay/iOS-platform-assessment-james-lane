@@ -3,7 +3,7 @@ import XCTest
 
 /// Vehicle details  screen data representation
 enum VehicleDetailsScreen: String, ApplicationAccessing {
-    
+
     case fuelLog = "vehicle_option_Fuel Log"
     case serviceHistory = "vehicle_option_Service History"
     case workOrders = "vehicle_option_Work Orders"
@@ -17,7 +17,7 @@ enum VehicleDetailsScreen: String, ApplicationAccessing {
     case comments = "vehicle_option_Comments"
     case photos = "vehicle_option_Photos"
     case documents = "vehicle_option_Documents"
-    
+
     var element: XCUIElement {
         return app.buttons[rawValue]
     }
@@ -25,7 +25,7 @@ enum VehicleDetailsScreen: String, ApplicationAccessing {
 
 /// Vehicle Details screen actions representation
 class VehicleDetailsScreenActions: ElementWaitable, Scrollable, TextFieldActionable {
-    
+
     @discardableResult
     func iTapFuelLog() -> Self {
         iWaitForElementAndTap(VehicleDetailsScreen.fuelLog.element)

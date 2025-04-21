@@ -2,5 +2,5 @@ import Foundation
 
 extension TimeInterval {
 
-    static let standardTimeout: Double = 2
+  static let standardTimeout: Double = 3
 }

@@ -49,4 +49,4 @@ bundle exec fastlane ui_test
 
 and generate a report on the average of these metrics over 10 executions of the UI Tests. Include this baseline report in your submission.
 
-6. Optimize the application to bring down the metrics and generate a new report. Include the report on the optimization in your submission. The tests should pass with a TimeInterval.standardTimeout = 2 or lower. (Double+Extension.Swift)
+6. Optimize the application to bring down the metrics and generate a new report. Include the updated report on the optimization in your submission as well. The tests should pass with a TimeInterval.standardTimeout = 2 or lower. (Double+Extension.Swift)

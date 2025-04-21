@@ -14,7 +14,7 @@ enum FuelLogListScreen: String, ApplicationAccessing {
 class FuelLogListScreenActions: ElementWaitable  {
 
     /// First fuel log cell has the starting index 5 as in identifier fuel_log_list_item_5
-    private static let startingIndex = 5
+    private static let startingIndex = 1000
     private static let baseFuelLogButtonIdentifier = "fuel_log_list_item_"
 
     @discardableResult

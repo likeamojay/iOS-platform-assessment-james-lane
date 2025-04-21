@@ -7,14 +7,13 @@ struct VehicleList: View {
   @State private var selectedVehicle: Vehicle?
   @State private var lastUpdated = Date()
   var vehicleFuelEntries: [Int: [FuelEntry]] = [:]
-
-  // Adding heavy computation that will block the main thread
-  private func heavyComputation() {
-    // Simulate heavy computation by creating a large array and performing operations
-    let largeArray = (0...100000).map { _ in UUID() }
-    let _ = largeArray.sorted()
-    let _ = largeArray.map { $0.uuidString }
-    let _ = largeArray.filter { $0.uuidString.contains("a") }
+  
+  init(isLoading: Bool = true, searchText: String = "", selectedVehicle: Vehicle? = nil, lastUpdated: Date = Date()) {
+    self.isLoading = isLoading
+    self.searchText = searchText
+    self.selectedVehicle = selectedVehicle
+    self.lastUpdated = lastUpdated
+    self.vehicleFuelEntries = mapFuelEntriesToVehicles()
   }
 
   private func mapFuelEntriesToVehicles() -> [Int: [FuelEntry]] {

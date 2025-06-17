@@ -26,7 +26,7 @@ This project contains a simplified version of the Fleetio mobile app. Inside you
 
 We need you to make some improvements to this sample application. This will require a mixture of traditional Swift iOS development and scripting. This will also provide the opportunity for you to suggest or implement architectural improvements. Please annotate your changes with comments explaining the rationale behind your changes and how they will aid application performance and maintainability. Ensure the included tests are passing. Bonus points will be awarded for adding your own meaningful tests.
 
-1. Using the [Fleetio API](https://developer.fleetio.com/docs/overview/quick-start), update the Vehicle list view to use the asynchronous [List Vehicles api endpoint](https://developer.fleetio.com/docs/api/v-1-vehicles-index).
+1. Using the [Fleetio API](https://developer.fleetio.com/docs/overview/quick-start), update the Vehicle list view to use the asynchronous [List Vehicles api endpoint](https://developer.fleetio.com/docs/api/vehicles-index).
 
 2. Inside the given Fastfile are two lane stubs for unit & UI tests respectively. Implement these lanes such that the followings commands run corresponding tests. Use "iPhone 16 Pro for the test device field. Approach this objective like you are creating lanes for use in a CI/CD pipeline. Additional support lanes are allowed.
 

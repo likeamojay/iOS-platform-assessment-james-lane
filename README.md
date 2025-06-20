@@ -1,6 +1,6 @@
 # Setup
 
-1. Clone this repository
+1. Fork this repository
 
 2. Create a branch to work in
 
@@ -16,7 +16,11 @@ Requires:
 bundle install
 ```
 
-4. When you have completed your assessment, please submit a pull request with your changes. We at Fleetio use AI tools as part of our work. If you use AI to assist you in completing this assessment please explain your choice of model and your prompts inside of your pull request.
+4. When you have completed your assessment, please submit a pull request with your changes targeting the main branch of your fork. Then add @byates-fleetian, @andre-fleetio, @jwschofield as collaborators
+
+## AI Disclaimer
+
+We at Fleetio use AI tools as part of our work. If you use AI to assist you in completing this assessment please explain your choice of model and your prompts inside of your pull request.
 
 ## Application Overview
 

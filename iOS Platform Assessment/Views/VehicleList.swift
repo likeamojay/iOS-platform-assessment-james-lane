@@ -16,7 +16,7 @@ struct VehicleList: View {
             if viewModel.isInitialLoading {
                 ProgressView("Loading Vehicles...")
                     .progressViewStyle(CircularProgressViewStyle())
-                    //.scaleEffect(1.5)
+                    .scaleEffect(1.5)
             } else if !viewModel.errorString.isEmpty {
                 Text(viewModel.errorString)
                     .foregroundColor(.red)

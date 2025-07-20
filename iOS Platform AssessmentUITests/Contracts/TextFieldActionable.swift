@@ -26,6 +26,9 @@ extension TextFieldActionable {
         if value == text {
             return self // Skip it, text we need is already there
         }
+        if let value, !value.isEmpty && inTextField.elementType == .secureTextField {
+            return self // We can't tell if the text matches or not but we can assume it's the destired text if the field is filled at all
+        }
         if shouldClear, !(value?.isEmpty ?? true) {
             inTextField.clearAndEnterText(text: text)
         } else {

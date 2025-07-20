@@ -20,12 +20,27 @@ struct LoginView: View {
           .textFieldStyle(.roundedBorder)
           .padding()
           .accessibilityIdentifier(AccessibilityIdentifiers.LoginView.accountTokenTextField)
-        
+          .onChange(of: accountToken) {
+              Credentials.accountToken = accountToken
+          }
+          .onAppear {
+              if !Credentials.accountToken.isEmpty {
+                  accountToken = Credentials.accountToken
+              }
+          }
+
         SecureField("Api Key", text: $apiKey)
           .textFieldStyle(.roundedBorder)
           .padding()
           .accessibilityIdentifier(AccessibilityIdentifiers.LoginView.apiKeyTextField)
-        
+          .onChange(of: apiKey) {
+              Credentials.apiKey = apiKey
+          }
+          .onAppear {
+              if !Credentials.apiKey.isEmpty {
+                  apiKey = Credentials.apiKey
+              }
+          }
         if showError {
           Text("Invalid account token or api key. Please try again.")
             .foregroundColor(.red)
@@ -42,7 +57,7 @@ struct LoginView: View {
               isLoading = true
               showError = false
               // Simulate a delay
-              DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 isLoggedIn = true
                 isLoading = false
               }

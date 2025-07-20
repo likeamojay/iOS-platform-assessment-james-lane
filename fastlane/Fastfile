@@ -16,13 +16,30 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "A custom fastlane lane to run the unit tests"
-  lane :unit_tests do
-    # add actions here: https://docs.fastlane.tools/actions
+
+  # Support lane for running tests
+  desc "Run tests given a test target's scheme name"
+  lane :execute_tests do |options|
+    scan(
+      scheme: options[:scheme],
+      device: "iPhone 16 Pro",
+      clean: true,
+      build_for_testing: true,
+      output_directory: "fastlane/test_output/#{options[:scheme]}",
+      output_types: "junit, html",
+      fail_build: true
+     )
   end
 
+  # Unit test lane
+  desc "A custom fastlane lane to run the unit tests"
+  lane :unit_test do
+    execute_tests(scheme: "iOS Platform AssessmentTests")
+  end
+
+  # UI test lane
   desc "A custom fastlane lane to run the UI tests"
-  lane :ui_tests do
-    # add actions here: https://docs.fastlane.tools/actions
+  lane :ui_test do
+    execute_tests(scheme: "iOS Platform AssessmentUITests")
   end
 end

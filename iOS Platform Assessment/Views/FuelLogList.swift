@@ -3,8 +3,8 @@ import SwiftUI
 
 struct FuelLogList: View {
 
-  @State private var fuelEntries: [FuelEntry] = SampleData.fuelEntries
-
+  @State private var fuelEntries: [FuelEntry] = []
+  
   let vehicleId: Int
 
   var body: some View {
@@ -19,9 +19,6 @@ struct FuelLogList: View {
     .navigationBarItems(trailing: NavigationLink(destination: FuelLogForm(vehicleId: vehicleId)) {
       Image(systemName: "plus")
     }.accessibilityIdentifier(AccessibilityIdentifiers.FuelLogList.newFuelEntry))
-    .onAppear {
-      fuelEntries = SampleData.fuelEntries
-    }
   }
 }
 

@@ -2,6 +2,9 @@
 //  Credentials.swift
 //  iOS Platform Assessment
 //
+//  Helper class to save API key and token to disk
+//  so I don't have to manually enter it in every time I launch the app.
+//
 //  Created by James Lane on 7/15/25.
 //
 

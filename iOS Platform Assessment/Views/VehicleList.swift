@@ -36,6 +36,8 @@ struct VehicleList: View {
                                     ? Color.gray.opacity(0.1)
                                     : Color.clear
                             )
+                            .accessibilityIdentifier(AccessibilityIdentifiers.VehicleList.vehicleListItem(id: vehicle.id))
+                            .background(selectedVehicle?.id == vehicle.id ? Color.gray.opacity(0.1) : Color.clear)
                             .onAppear {
                                 if viewModel.shouldLoadNextPage(currentItem: vehicle) {
                                     Task {

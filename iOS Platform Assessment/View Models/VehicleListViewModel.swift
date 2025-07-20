@@ -112,10 +112,21 @@ class VehicleListViewModel: ObservableObject {
     }
 
     private func mapFuelEntriesToVehicles() -> [Int: [FuelEntry]] {
-        let groupedEntries = Dictionary(grouping: SampleData.fuelEntries.compactMap { entry in
-            entry.vehicleId.map { ($0, entry) }
-        }) { $0.0 }
-        return groupedEntries.mapValues { $0.map { $0.1 } }
+       var vehicleFuelEntries: [Int: [FuelEntry]] = [:]
+
+       // Initialize empty arrays for each vehicle
+        for vehicle in self.vehicles {
+         vehicleFuelEntries[vehicle.id] = []
+       }
+
+       // Map fuel entries to their corresponding vehicles
+       for fuelEntry in SampleData.fuelEntries {
+         if let vehicleId = fuelEntry.vehicleId {
+           vehicleFuelEntries[vehicleId]?.append(fuelEntry)
+         }
+       }
+
+       return vehicleFuelEntries
     }
 
     var filteredVehicles: [Vehicle] {

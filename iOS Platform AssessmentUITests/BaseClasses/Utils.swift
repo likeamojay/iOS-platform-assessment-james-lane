@@ -3,8 +3,8 @@ import XCTest
 
 struct Utils {
 
-    public static let defaultAccountToken = "31415926535"
-    public static let defaultApiKey = "jq1hk234kj124-nsfda1234k-j1n23l4"
+    public static let defaultAccountToken = "b7fc6a5b44"
+    public static let defaultApiKey = "d39a2d1ec4fd5e1aee15c177631516fe600fc601"
     public static let pricePerGallon: Double = 3
     public static let gallons: Double = 10
     public static let tripMiles: Double = 100

@@ -23,6 +23,9 @@ extension TextFieldActionable {
         iWaitForElement(inTextField, timeout: timeout, file: file, line: line)
         inTextField.tap()
         let value = inTextField.value as? String
+        if value == text {
+            return self // Skip it, text we need is already there
+        }
         if shouldClear, !(value?.isEmpty ?? true) {
             inTextField.clearAndEnterText(text: text)
         } else {

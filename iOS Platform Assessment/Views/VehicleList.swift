@@ -44,14 +44,6 @@ struct VehicleList: View {
                                 }
                             }
                         }
-
-                        if viewModel.hasNextPage {
-                            HStack {
-                                Spacer()
-                                ProgressView()
-                                Spacer()
-                            }
-                        }
                     }
                     .id(viewModel.searchText)
                     .listStyle(.plain)

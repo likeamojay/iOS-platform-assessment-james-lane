@@ -17,18 +17,31 @@ default_platform(:ios)
 
 platform :ios do
 
+  # Support lane for building on a fresh simulator w/o a previous app install
+  lane :prepare_simulator do |options|
+    simulator_name = options[:device_name]
+
+    UI.message("Booting and preparing simulator: #{simulator_name}")
+
+    project_path = File.expand_path("../iOS Platform Assessment.xcodeproj", __dir__)
+
+    sh "xcodebuild -project '#{project_path}' \
+      -scheme 'iOS Platform Assessment' \
+      -destination 'platform=iOS Simulator,name=#{simulator_name}' \
+      build"
+    end
+
   # Support lane for running tests
   desc "Run tests given a test target's scheme name"
   lane :execute_tests do |options|
+    prepare_simulator(device_name:"iPhone 16 Pro") # Comment out this step if you already have an app build on the simulator
     scan(
       scheme: options[:scheme],
-      device: "iPhone 16 Pro",
-      clean: true,
-      build_for_testing: true,
-      output_directory: "fastlane/test_output/#{options[:scheme]}",
-      output_types: "junit, html",
-      fail_build: true
-     )
+      project: "./iOS Platform Assessment.xcodeproj",
+      devices: ["iPhone 16 Pro"],
+      output_types: "junit,html",
+      output_directory: "fastlane/test_output/#{options[:scheme]}"
+    )
   end
 
   # Unit test lane

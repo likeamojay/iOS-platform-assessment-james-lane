@@ -29,6 +29,16 @@
 		EFC1F9A92DAF1C47003FF9A9 /* iOS Platform AssessmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Platform AssessmentUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		60CCAA8D2E2DD30700A3D63C /* Exceptions for "iOS Platform AssessmentUITests" folder in "iOS Platform Assessment" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				BaseClasses/Utils.swift,
+			);
+			target = EFC1F98E2DAF1C46003FF9A9 /* iOS Platform Assessment */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		EFC1F9912DAF1C46003FF9A9 /* iOS Platform Assessment */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -42,6 +52,9 @@
 		};
 		EFC1F9AC2DAF1C47003FF9A9 /* iOS Platform AssessmentUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				60CCAA8D2E2DD30700A3D63C /* Exceptions for "iOS Platform AssessmentUITests" folder in "iOS Platform Assessment" target */,
+			);
 			path = "iOS Platform AssessmentUITests";
 			sourceTree = "<group>";
 		};
@@ -393,6 +406,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "iOS Platform Assessment/iOS Platform Assessment.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS Platform Assessment/Preview Content\"";
@@ -423,6 +437,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "iOS Platform Assessment/iOS Platform Assessment.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS Platform Assessment/Preview Content\"";

@@ -3,20 +3,21 @@ import SwiftUI
 
 struct FuelLogList: View {
 
-  @State private var fuelEntries: [FuelEntry] = []
-  
+  @State private var refreshID = UUID() // Hack to trigger SampleData.fullEntries to receive changes from FuelLogForm
+
   let vehicleId: Int
 
   var body: some View {
     List {
-      ForEach(fuelEntries.filter { $0.vehicleId == vehicleId }.sorted(by: { $0.date ?? Date() > $1.date ?? Date() }), id: \.id) { fuelEntry in
+      ForEach(SampleData.fuelEntries.filter { $0.vehicleId == vehicleId }.sorted(by: { $0.date ?? Date() > $1.date ?? Date() }), id: \.id) { fuelEntry in
         FuelLogRow(fuelEntry: fuelEntry, vehicleId: vehicleId)
           .accessibilityIdentifier(AccessibilityIdentifiers.FuelLogList.fuelLogListItem(id: fuelEntry.id ?? 0))
       }
     }
+    .id(refreshID)
     .navigationTitle("Fuel Log")
     .navigationBarTitleDisplayMode(.inline)
-    .navigationBarItems(trailing: NavigationLink(destination: FuelLogForm(vehicleId: vehicleId)) {
+    .navigationBarItems(trailing: NavigationLink(destination: FuelLogForm(vehicleId: vehicleId, refreshID: $refreshID)) {
       Image(systemName: "plus")
     }.accessibilityIdentifier(AccessibilityIdentifiers.FuelLogList.newFuelEntry))
   }

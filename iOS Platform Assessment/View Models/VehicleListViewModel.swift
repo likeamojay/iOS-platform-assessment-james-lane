@@ -25,6 +25,7 @@ class VehicleListViewModel: ObservableObject {
     private var startCursor: String?
     private var nextCursor: String?
     private var cancellables = Set<AnyCancellable>()
+    private var perPage = 10
 
     var hasNextPage: Bool {
         nextCursor != nil
@@ -32,7 +33,7 @@ class VehicleListViewModel: ObservableObject {
 
     init() {
         $searchText
-            .debounce(for: .milliseconds(100), scheduler: RunLoop.main)
+            .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
             .removeDuplicates()
             .filter({ !$0.isEmpty })
             .sink { [weak self] term in
@@ -64,7 +65,7 @@ class VehicleListViewModel: ObservableObject {
 
         guard var urlComponents = URLComponents(string: kUrlString) else { return }
 
-        var queryItems = [URLQueryItem(name: "per_page", value: "10")]
+        var queryItems = [URLQueryItem(name: "per_page", value: "\(self.perPage)")]
         if let nextCursor {
             queryItems.append(URLQueryItem(name: "start_cursor", value: nextCursor))
         }
@@ -72,20 +73,29 @@ class VehicleListViewModel: ObservableObject {
         urlComponents.queryItems = queryItems
 
         guard let url = urlComponents.url else {
-            self.errorString = "Invalid URL"
+            errorString = "Invalid URL"
             return
         }
 
         var request = URLRequest(url: url)
-        request.setValue("Token \(Credentials.apiKey)", forHTTPHeaderField: "Authorization")
-        request.setValue(Credentials.accountToken, forHTTPHeaderField: "Account-Token")
+        request.setValue("Token \(Utils.apiKey)", forHTTPHeaderField: "Authorization")
+        request.setValue(Utils.accountToken, forHTTPHeaderField: "Account-Token")
 
         do {
+            if  CommandLine.arguments.contains("-isPerformanceTest") {
+                JLAnalytics.shared.markStartTime(for: "APICallDuration")
+            }
             let (data, response) = try await URLSession.shared.data(for: request)
+            if  CommandLine.arguments.contains("-isPerformanceTest") {
+                JLAnalytics.shared.markStopTime(for: "APICallDuration")
+            }
 
+            if  CommandLine.arguments.contains("-isFinalPerformanceRun") {
+                JLAnalytics.shared.saveReport()
+            }
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode) else {
-                self.errorString = "HTTP Error \(String(describing: (response as? HTTPURLResponse)?.statusCode))"
+                errorString = "HTTP Error \(String(describing: (response as? HTTPURLResponse)?.statusCode))"
                 return
             }
 
@@ -94,13 +104,18 @@ class VehicleListViewModel: ObservableObject {
             decoder.keyDecodingStrategy = .convertFromSnakeCase
 
             let vehiclesResponse = try decoder.decode(VehiclesResponse.self, from: data)
-            self.vehicles += vehiclesResponse.records
-            self.vehicleFuelEntries.merge(self.mapFuelEntriesToVehicles()) { _, new in new }
+            vehicles += vehiclesResponse.records
+
+            if self.isFirstPage {
+                if  CommandLine.arguments.contains("-isPerformanceTest") {
+                    JLAnalytics.shared.markStopTime(for: "PageLoadTime")
+                }
+            }
+
             self.startCursor = vehiclesResponse.startCursor
             self.nextCursor = vehiclesResponse.nextCursor
-            print("fetching")
         } catch {
-            self.errorString = "Failed to fetch vehicles: \(error.localizedDescription)"
+            errorString = "Failed to fetch vehicles: \(error.localizedDescription)"
             self.nextCursor = nil
         }
     }
@@ -109,24 +124,6 @@ class VehicleListViewModel: ObservableObject {
         guard !isFetchingNextPage else { return false }
         guard hasNextPage else { return false }
         return currentItem.id == filteredVehicles.last?.id
-    }
-
-    private func mapFuelEntriesToVehicles() -> [Int: [FuelEntry]] {
-       var vehicleFuelEntries: [Int: [FuelEntry]] = [:]
-
-       // Initialize empty arrays for each vehicle
-        for vehicle in self.vehicles {
-         vehicleFuelEntries[vehicle.id] = []
-       }
-
-       // Map fuel entries to their corresponding vehicles
-       for fuelEntry in SampleData.fuelEntries {
-         if let vehicleId = fuelEntry.vehicleId {
-           vehicleFuelEntries[vehicleId]?.append(fuelEntry)
-         }
-       }
-
-       return vehicleFuelEntries
     }
 
     var filteredVehicles: [Vehicle] {
@@ -141,6 +138,10 @@ class VehicleListViewModel: ObservableObject {
                 vehicle.yearString.contains(term)
             }
         }
+    }
+
+    var isFirstPage: Bool {
+        return self.vehicles.count == self.perPage
     }
 }
 

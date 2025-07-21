@@ -3,9 +3,8 @@ import XCTest
 final class SearchForNonExistingCarTest: UITest {
     
     func test_iTryToSearchForNonExistingCar() {
-
         LoginScreenActions()
-          .iLogin(accountToken: Utils.defaultAccountToken, apiKey: Utils.defaultApiKey)
+          .iLogin(accountToken: Utils.accountToken, apiKey: Utils.apiKey)
         HomeScreenActions()
             .iTapBrowseTab()
         BrowseScreenActions()

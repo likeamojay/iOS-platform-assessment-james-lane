@@ -10,12 +10,13 @@ enum TypesOfVehicleScreen: String, ApplicationAccessing {
     case electricDream = "vehicle_list_item_3"
     case reliable = "vehicle_list_item_4"
     case speedy = "vehicle_list_item_5"
+    case pickupTruck = "vehicle_list_item_4004711" // Real vehicle from API
 
     var element: XCUIElement {
         switch self {
         case .searchField:
             return app.textFields[rawValue]
-        case .elon, .stallion, .electricDream, .reliable, .speedy:
+        default:
             return app.buttons[rawValue]
         }
     }

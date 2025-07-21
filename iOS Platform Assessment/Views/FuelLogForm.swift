@@ -8,18 +8,19 @@ struct FuelLogForm: View {
   @State var discount: Double?
   @State var total: Double?
 
+  @Binding var refreshID: UUID
   let vehicleId: Int
 
-  init(vehicleId: Int) {
+  init(vehicleId: Int, refreshID: Binding<UUID>) {
     var initial = FuelEntry()
     initial.date = Date()
     self._fuelEntry = .init(initialValue: initial)
     self.vehicleId = vehicleId
+    self._refreshID = refreshID
   }
 
   var body: some View {
     VStack {
-
       if validationMessage.count > 0 {
         Text(validationMessage)
           .foregroundColor(.red)
@@ -133,6 +134,7 @@ struct FuelLogForm: View {
 
         if validateEntry() {
           SampleData.fuelEntries.append(fuelEntry)
+          refreshID = UUID()
           self.presentationMode.wrappedValue.dismiss()
         } else {
           showValidationMessage()
@@ -163,6 +165,6 @@ struct FuelLogForm: View {
 
 #Preview {
   NavigationView {
-    FuelLogForm(vehicleId: 1)
+    //FuelLogForm(vehicleId: 1)
   }
 }

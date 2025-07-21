@@ -6,13 +6,13 @@ final class CreateANewFuelEntryTest: UITest {
     func test_iLoginAndCreateANewFuelEntry() {
 
         LoginScreenActions()
-          .iLogin(accountToken: Utils.defaultAccountToken, apiKey: Utils.defaultApiKey)
+          .iLogin(accountToken: Utils.accountToken, apiKey: Utils.apiKey)
         HomeScreenActions()
             .iTapBrowseTab()
         BrowseScreenActions()
             .iTapVehiclesButton()
         TypesOfVehiclesScreenActions()
-            .iSelectTypeOfVehicle(vehicleType: .electricDream)
+            .iSelectTypeOfVehicle(vehicleType: .pickupTruck)
         VehicleDetailsScreenActions()
             .iTapFuelLog()
         FuelLogListScreenActions()
@@ -25,13 +25,13 @@ final class CreateANewFuelEntryTest: UITest {
 
     func test_saveFormWithEmptyFieldsTest() {
         LoginScreenActions()
-          .iLogin(accountToken: Utils.defaultAccountToken, apiKey: Utils.defaultApiKey)
+            .iLogin(accountToken: Utils.accountToken, apiKey: Utils.apiKey)
         HomeScreenActions()
             .iTapBrowseTab()
         BrowseScreenActions()
             .iTapVehiclesButton()
         TypesOfVehiclesScreenActions()
-            .iSelectTypeOfVehicle(vehicleType: .reliable)
+            .iSelectTypeOfVehicle(vehicleType: .pickupTruck)
         VehicleDetailsScreenActions()
             .iTapFuelLog()
         FuelLogListScreenActions()

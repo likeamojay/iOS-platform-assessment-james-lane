@@ -21,11 +21,11 @@ struct LoginView: View {
           .padding()
           .accessibilityIdentifier(AccessibilityIdentifiers.LoginView.accountTokenTextField)
           .onChange(of: accountToken) {
-              Credentials.accountToken = accountToken
+              Utils.accountToken = accountToken
           }
           .onAppear {
-              if !Credentials.accountToken.isEmpty {
-                  accountToken = Credentials.accountToken
+              if !Utils.accountToken.isEmpty {
+                  accountToken = Utils.accountToken
               }
           }
 
@@ -34,11 +34,11 @@ struct LoginView: View {
           .padding()
           .accessibilityIdentifier(AccessibilityIdentifiers.LoginView.apiKeyTextField)
           .onChange(of: apiKey) {
-              Credentials.apiKey = apiKey
+              Utils.apiKey = apiKey
           }
           .onAppear {
-              if !Credentials.apiKey.isEmpty {
-                  apiKey = Credentials.apiKey
+              if !Utils.apiKey.isEmpty {
+                  apiKey = Utils.apiKey
               }
           }
         if showError {
@@ -75,7 +75,6 @@ struct LoginView: View {
           .padding()
           .accessibilityIdentifier(AccessibilityIdentifiers.LoginView.loginButton)
         }
-        
         NavigationLink(
           destination: HomeView(),
           isActive: $isLoggedIn,

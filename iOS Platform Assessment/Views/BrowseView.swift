@@ -80,7 +80,7 @@ struct BrowseView: View {
   func navigationDestination(for item: BrowseItem) -> some View {
 
     if item.name == "Vehicles" {
-      AnyView(VehicleList())
+      AnyView(VehicleListView())
     } else {
       AnyView(Text(item.name))
     }

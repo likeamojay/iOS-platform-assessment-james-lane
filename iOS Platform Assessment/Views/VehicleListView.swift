@@ -1,5 +1,5 @@
 //
-//  VehicleList.swift
+//  VehicleListView.swift
 //  iOS Platform Assessment
 //
 //  Created by James Lane on 7/13/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct VehicleList: View {
+struct VehicleListView: View {
 
     @StateObject private var viewModel = VehicleListViewModel()
 
@@ -46,6 +46,11 @@ struct VehicleList: View {
                             }
                         }
                     }
+                    .onAppear {
+                        if CommandLine.arguments.contains("-isPerformanceTest") {
+                            JLAnalytics.shared.markStartTime(for: "PageLoadTime")
+                        }
+                    }
                     .id(viewModel.searchText)
                     .listStyle(.plain)
                     .navigationTitle("Vehicles")
@@ -65,6 +70,6 @@ struct VehicleList: View {
 
 #Preview {
     NavigationView {
-        VehicleList()
+        VehicleListView()
     }
 }
